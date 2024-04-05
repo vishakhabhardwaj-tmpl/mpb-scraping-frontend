@@ -105,7 +105,7 @@ export default function UrlInputPage() {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "/api/proxy?url=http://tunica.zapto.org:5001/scrape-website",
+        "/api/proxy?url=http://tunica.zapto.org:5001/scrape",
         {
           url: url,
         },
