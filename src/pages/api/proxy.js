@@ -10,7 +10,7 @@ const handler = (req, res) => {
 
   // Configure the proxy middleware
   const proxy = createProxyMiddleware({
-    target: "http://tunica.zapto.org:5001",
+    target: "http://tunica.zapto.org:5001/scrape",
     changeOrigin: true,
   });
 
