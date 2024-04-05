@@ -1,4 +1,4 @@
-import UrlInputPage from "@/Components/UrlInputPage";
+import UrlInputPage from "@/src/components/UrlInputPage";
 import React from "react";
 
 const index = () => {
