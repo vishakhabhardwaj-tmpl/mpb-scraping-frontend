@@ -2,14 +2,17 @@ import React, { useState } from "react";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import axios from "axios";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 export default function UrlInputPage() {
   const [url, setUrl] = useState("");
+  const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState(null);
   const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const res = await axios.post(
         "/api/proxy?url=http://tunica.zapto.org:5001/scrape",
@@ -20,8 +23,10 @@ export default function UrlInputPage() {
       );
 
       setResponse(response?.data);
+      setLoading(false);
     } catch (error) {
       setError(error);
+      setLoading(false);
     }
   };
 
@@ -43,9 +48,16 @@ export default function UrlInputPage() {
         </label>
         <button
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          disabled={loading}
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 w-32 h-10 flex justify-center"
         >
-          Send URL
+          {loading ? (
+            <span className="animate-spin">
+              <AiOutlineLoading3Quarters size={22} />
+            </span>
+          ) : (
+            "Fetch Recipe"
+          )}
         </button>
       </form>
       {response && (

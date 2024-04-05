@@ -1,12 +1,10 @@
-import UrlInputPage from "@/src/components/UrlInputPage";
 import React from "react";
+import dynamic from "next/dynamic";
 
-const index = () => {
-  return (
-    <div>
-      <UrlInputPage />
-    </div>
-  );
+const UrlInputPage = dynamic(() => import("@/components/UrlInputPage"));
+
+const HomePage = () => {
+  return <UrlInputPage />;
 };
 
-export default index;
+export default HomePage;
