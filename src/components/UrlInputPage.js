@@ -3,6 +3,7 @@ import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import axios from "axios";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { API_URL } from "@/constant";
 
 export default function UrlInputPage() {
   const [url, setUrl] = useState("");
@@ -14,15 +15,11 @@ export default function UrlInputPage() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post(
-        "/api/proxy?url=http://tunica.zapto.org:5001/scrape",
-        {
-          url: url,
-        },
-        {}
-      );
+      const res = await axios.post(`/api/scrape`, {
+        url: url,
+      });
 
-      setResponse(response?.data);
+      setResponse(res?.data);
       setLoading(false);
     } catch (error) {
       setError(error);
