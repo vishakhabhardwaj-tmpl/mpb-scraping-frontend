@@ -18,7 +18,7 @@ export default async (req, res) => {
       const data = recipeRes.data;
       if (data) {
         return res.status(200).json({
-          data: data,
+          data,
         });
       } else {
         return res.status(500).json({ message: "Internal server error" });

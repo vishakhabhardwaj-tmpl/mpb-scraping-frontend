@@ -3,7 +3,6 @@ import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import axios from "axios";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { API_URL } from "@/constant";
 
 export default function UrlInputPage() {
   const [url, setUrl] = useState("");
@@ -18,14 +17,15 @@ export default function UrlInputPage() {
       const res = await axios.post(`/api/scrape`, {
         url: url,
       });
-
-      setResponse(res?.data);
+      setResponse(res?.data?.data);
       setLoading(false);
     } catch (error) {
       setError(error);
       setLoading(false);
     }
   };
+
+  console.log(response);
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col justify-center items-center">
