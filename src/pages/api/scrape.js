@@ -12,9 +12,15 @@ export default async (req, res) => {
     }
 
     try {
-      const recipeRes = await axios.post(`${API_URL}/scrape`, {
-        url: url,
-      });
+      const recipeRes = await axios.post(
+        `${API_URL}/scrape`,
+        {
+          url: url,
+        },
+        {
+          timeout: 300000,
+        }
+      );
       const data = recipeRes.data;
       if (data) {
         return res.status(200).json({
